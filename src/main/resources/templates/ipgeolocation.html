@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <title>Zadanie 1</title>
+</head>
+<body>
+<h1> Praca domowa tydzień 5 - Zadanie 1</h1>
+
+<table class="pure-table">
+    <thead>
+     <tr>
+        <th>IP</th>
+        <th>Contry</th>
+        <th>Cod</th>
+        <th>LongCod</th>
+        <th>Flag</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr th:each="ipaddres:${ipgeoloc}">
+      <td th:text="${ipaddres.getUrl()}  " ></td>
+      <td th:text="${ipaddres.getCountryName()}  " ></td>
+      <td th:text="${ipaddres.getCountryCode()}  " ></td>
+      <td th:text="${ipaddres.getCountryCode3()}  " ></td>
+      <td th:text="${ipaddres.getCountryEmoji()}  " ></td>
+      <br>
+      </tr>
+    </tbody>
+</table>
+
+<br>
+<form class="pure-form"  th:action="@{/geolocation/ip}" th:object="${newip}" method="post">
+    <legend>add IP address</legend>
+    <p>ID: <input type="text" th:field="*{ipaddress}"></p>
+    <button class="pure-button pure-button-primary">add IP</button></p>
+</form>
+
+</body>
+</html>
