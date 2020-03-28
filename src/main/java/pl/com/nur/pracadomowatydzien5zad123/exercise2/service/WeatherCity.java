@@ -90,9 +90,6 @@ public class WeatherCity {
     }
 
     public DataForTheMap getMap (){
-        System.out.println( " Lat long " + lattlong);
-        System.out.println("lat " + dataForTheMap.getLatt());
-        System.out.println("long " + dataForTheMap.getLongg());
         return dataForTheMap;
     }
 

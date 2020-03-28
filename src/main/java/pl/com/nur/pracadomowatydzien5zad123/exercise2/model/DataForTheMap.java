@@ -11,7 +11,7 @@ public class DataForTheMap {
 
 
     public DataForTheMap() {
-        latt = "52.235352";
+        latt = "52.235352";   // wczytane na start 
         longg = "21.009390";
     }
 
@@ -23,12 +23,9 @@ public class DataForTheMap {
     }
 
     public void setLattLong(String lattLong) {
-        String[] latlon = lattLong.split("[,]");                //"\\|.|");
-        System.out.println(" w parsowarni");
+        String[] latlon = lattLong.split("[,]");
         setLatt(latlon[0]);
         setLongg(latlon[1]);
-        System.out.println(" lat = " + getLatt());
-        System.out.println(" long = " + latlon[1] );
         this.lattLong = lattLong;
     }
 

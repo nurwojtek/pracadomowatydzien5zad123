@@ -30,8 +30,7 @@ public class WeatherApi {
 
     @PostMapping
     public String addVehicle(@ModelAttribute City search) {
-        System.out.println("do post wpada" + search);
-        weatherCity.getCity(search.getTitle());    // z nowego miasta wiczytuje jego nazwę :D
+        weatherCity.getCity(search.getTitle());    // z nowego miasta wczytuje jego nazwę :D
         return "redirect:/weather-city";
     }
 }
