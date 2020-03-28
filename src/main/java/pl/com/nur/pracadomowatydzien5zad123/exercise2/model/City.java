@@ -32,6 +32,16 @@ public class City {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    private String urlWeather;
+
+    public String getUrlWeather() {
+        return urlWeather;
+    }
+
+    public void setUrlWeather(String urlWeather) {
+        this.urlWeather = urlWeather;
+    }
+
     @JsonProperty("title")
     public String getTitle() {
         return title;

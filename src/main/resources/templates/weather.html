@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <title>Zadanie 2</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+
+    <style>#mapid { height: 500px;
+                    width: 600px;
+    }</style>
+
 </head>
 <body>
 <h1> Praca domowa tydzień 5 - Zadanie 2</h1>
+
+
+<br>
+<form class="pure-form"  th:action="@{/weather-city}" th:object="${city}" method="post">
+    <p>City: <input type="text" th:field="*{title}"></p>
+    <button class="pure-button pure-button-primary">City</button></p>
+</form>
+
+<h2>
+    <form th:action="@{/weather-city}" th:object="${weatherIcon}" method="get">
+        <img th:src="*{getUrlWeather()}">
+    </form>
+</h2>
+
+<div id="mapid"></div>
+
+<script th:inline="javascript" >
+    var points = [[${mapweather}]];
+    var watherIconMap = L.icon({
+        iconUrl: points.urlIcon,
+        iconSize:     [100, 100], // size of the icon
+        iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var map = L.map('mapid').setView([points.latt, points.longg], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([points.latt, points.longg], {icon: watherIconMap}).addTo(map);
+
+</script>
 
 </body>
 </html>
